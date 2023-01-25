@@ -1,7 +1,7 @@
 {
   "name": "alura-node",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto de estudos que tem como objetivo construir uma API para gestão de livros e autores",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -15,6 +15,7 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "mongoose": "^6.2.6"
   }
 }

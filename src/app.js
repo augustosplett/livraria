@@ -1,21 +1,19 @@
 import express from "express";
+import db from "./config/dbConnect.js";
+import livros from "./models/Livro.js";
+import routes from "./routes/index.js";
+
+db.on("error", console.log.bind(console, 'Erro de conexão'));
+db.once("open", () => {
+    console.log('conexão com o banco realizada com sucesso')
+});
 
 const app = express();
 
 app.use(express.json());
 
-const livros = [
-    {id:1, "titulo": "Senhor dos Aneis"},
-    {id:2, "titulo": "Hobbit"}
-];
+routes(app);
 
-app.get('/', (req, res) =>{
-    res.status(200).send('Curso de node')
-});
-
-app.get('/livros', (req, res) =>{
-    res.status(200).json(livros)
-});
 
 app.get('/livros/:id', (req, res) => {
     const index = buscaLivro(req.params.id);
@@ -23,7 +21,8 @@ app.get('/livros/:id', (req, res) => {
 });
 
 app.post('/livros', (req, res) => {
-    livros.push(req.body);
+    // livros.create(req.body)
+    // livros.push(req.body);
     res.status(201).send('Criado com sucesso');
 });
 
