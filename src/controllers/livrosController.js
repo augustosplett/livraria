@@ -41,7 +41,7 @@ export default class LivroController{
         })
     }
 
-    static apagarLivro = (req, res) => {
+    static excluirLivro = (req, res) => {
         const id = req.params.id;
         livros.findByIdAndDelete(id, (err, livros) => {
             if(!err){
