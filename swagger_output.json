@@ -13,7 +13,6 @@
   "paths": {
     "/autores": {
       "get": {
-        "tags": ["Autores"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -23,7 +22,6 @@
         }
       },
       "post": {
-        "tags": ["Autores"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -38,7 +36,6 @@
     },
     "/autores/{id}": {
       "get": {
-        "tags": ["Autores"],
         "description": "",
         "parameters": [
           {
@@ -58,7 +55,6 @@
         }
       },
       "put": {
-        "tags": ["Autores"],
         "description": "",
         "parameters": [
           {
@@ -78,7 +74,6 @@
         }
       },
       "delete": {
-        "tags": ["Autores"],
         "description": "",
         "parameters": [
           {
@@ -100,7 +95,6 @@
     },
     "/editoras": {
       "get": {
-        "tags": ["Editora"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -110,7 +104,6 @@
         }
       },
       "post": {
-        "tags": ["Editora"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -125,7 +118,6 @@
     },
     "/editoras/{id}": {
       "get": {
-        "tags": ["Editora"],
         "description": "",
         "parameters": [
           {
@@ -145,7 +137,6 @@
         }
       },
       "put": {
-        "tags": ["Editora"],
         "description": "",
         "parameters": [
           {
@@ -165,7 +156,6 @@
         }
       },
       "delete": {
-        "tags": ["Editora"],
         "description": "",
         "parameters": [
           {
@@ -187,7 +177,6 @@
     },
     "/livros": {
       "get": {
-        "tags": ["Livros"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -197,7 +186,6 @@
         }
       },
       "post": {
-        "tags": ["Livros"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -212,7 +200,6 @@
     },
     "/livros/busca": {
       "get": {
-        "tags": ["Livros"],
         "description": "",
         "parameters": [
           {
@@ -233,7 +220,6 @@
     },
     "/livros/{id}": {
       "get": {
-        "tags": ["Livros"],
         "description": "",
         "parameters": [
           {
@@ -253,7 +239,6 @@
         }
       },
       "put": {
-        "tags": ["Livros"],
         "description": "",
         "parameters": [
           {
@@ -273,7 +258,6 @@
         }
       },
       "delete": {
-        "tags": ["Livros"],
         "description": "",
         "parameters": [
           {
