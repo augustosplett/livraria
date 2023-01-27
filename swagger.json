@@ -1,0 +1,72 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Livraria",
+      "description": "API para controle de uma livraria. É possivel incluir, editar, deletar e consultar Livros, Autores e Editoras através desta API."
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+      "/livros": {
+        "get": {
+          "tags": ["Livros"],
+          "summary": "Retorna todos os livros na base de dados.",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Livros"
+              }
+            }
+          }
+        }
+      },
+      "/livros/{id}": {
+        "get": {
+          "tags": ["Livros"],
+          "summary": "Retorna um livro específico.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "ID do livro que queremos buscar",
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Livros"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Livros": {
+        "properties": {
+          "_id": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "titulo": {
+            "type": "string"
+          },
+          "autor": {
+            "type": "string"
+          },
+          "numeroPaginas": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+  
