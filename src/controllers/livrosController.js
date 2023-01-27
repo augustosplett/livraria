@@ -5,6 +5,7 @@ export default class LivroController{
     static listarLivros = (req, res) => {
         livros.find()
             .populate('autor')
+            .populate('editora')
             .exec((err, livros) => {
                 res.status(200).json(livros)
             });
@@ -14,6 +15,7 @@ export default class LivroController{
         const id = req.params.id;
         livros.findById(id)
             .populate('autor', 'nome')
+            .populate('editora')
             .exec((err, livros) => {
             if(!err){
                 res.status(200).send(livros);
