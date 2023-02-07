@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST API",
-    "description": ""
+    "title": "Livraria",
+    "description": "API onde é possível consultar, cadastrar, editar e deletar Livros, Autores e Editoras."
   },
   "host": "localhost:3000",
   "basePath": "/",
@@ -11,10 +11,10 @@
     "http"
   ],
   "paths": {
-    "/autores": {
+    "/livros": {
       "get": {
-        "tags": ["Autores"],
-        "description": "",
+        "tags": ["Livros"],
+        "summary": "Retorna todos os livros cadastrados na base de dados.",
         "parameters": [],
         "responses": {
           "200": {
@@ -23,9 +23,30 @@
         }
       },
       "post": {
-        "tags": ["Autores"],
-        "description": "",
-        "parameters": [],
+        "tags": ["Livros"],
+        "summary": "Cadastra um novo livro.",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "exemple": {
+                "titulo": "teste",
+                "autor": {
+                  "_id": "63d19243b2c67a8677e3c219",
+                  "nome": "Augusto Madeira Splett",
+                  "nacionalidade": "canadense"
+                },
+                "editora": {
+                  "_id": "63d334812af4778b7d212c3e",
+                  "name": "Antiquada",
+                  "pais": "Argentina"
+                },
+                "numeroPaginas": 133
+            }
+          }
+        ],
+        "produces": ["application/json"],
         "responses": {
           "201": {
             "description": "Created"
@@ -36,10 +57,31 @@
         }
       }
     },
-    "/autores/{id}": {
+    "/livros/busca": {
       "get": {
-        "tags": ["Autores"],
-        "description": "",
+        "tags": ["Livros"],
+        "summary": "Busca livros de uma editora específica.",
+        "parameters": [
+          {
+            "name": "editora",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/livros/{id}": {
+      "get": {
+        "tags": ["Livros"],
+        "summary": "Retorna livro por ID.",
         "parameters": [
           {
             "name": "id",
@@ -58,8 +100,95 @@
         }
       },
       "put": {
+        "tags": ["Livros"],
+        "summary": "Edita um livro específico.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Livros"],
+        "summary": "Deleta um livro cadastrado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/autores": {
+      "get": {
         "tags": ["Autores"],
-        "description": "",
+        "summary": "Retorna todo os autores cadastrados.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/autores/{id}": {
+      "get": {
+        "tags": ["Autores"],
+        "summary": "Retorna um autor pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Autores"],
+        "summary": "Cria um novo Autor.",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Autores"],
+        "summary": "Edita um autor.",
         "parameters": [
           {
             "name": "id",
@@ -79,7 +208,7 @@
       },
       "delete": {
         "tags": ["Autores"],
-        "description": "",
+        "summary": "Deleta um autor.",
         "parameters": [
           {
             "name": "id",
@@ -101,7 +230,7 @@
     "/editoras": {
       "get": {
         "tags": ["Editora"],
-        "description": "",
+        "summary": "Listar todas as editoras cadastradas.",
         "parameters": [],
         "responses": {
           "200": {
@@ -111,7 +240,7 @@
       },
       "post": {
         "tags": ["Editora"],
-        "description": "",
+        "summary": "Cadastra uma nova editora.",
         "parameters": [],
         "responses": {
           "201": {
@@ -126,7 +255,7 @@
     "/editoras/{id}": {
       "get": {
         "tags": ["Editora"],
-        "description": "",
+        "summary": "Busca editora por ID.",
         "parameters": [
           {
             "name": "id",
@@ -146,7 +275,7 @@
       },
       "put": {
         "tags": ["Editora"],
-        "description": "",
+        "summary": "Edita uma editora existente.",
         "parameters": [
           {
             "name": "id",
@@ -166,115 +295,7 @@
       },
       "delete": {
         "tags": ["Editora"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/livros": {
-      "get": {
-        "tags": ["Livros"],
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Livros"],
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/livros/busca": {
-      "get": {
-        "tags": ["Livros"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "editora",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/livros/{id}": {
-      "get": {
-        "tags": ["Livros"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Livros"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Livros"],
-        "description": "",
+        "summary": "Delete uma editora existente.",
         "parameters": [
           {
             "name": "id",
